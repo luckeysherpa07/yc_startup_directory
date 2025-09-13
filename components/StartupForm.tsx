@@ -7,10 +7,13 @@ import MDEditor from "@uiw/react-md-editor"
 import { Button } from "./ui/button"
 import { Send } from "lucide-react"
 import { formSchema } from "@/lib/validation"
+import { z } from "zod"
+import { useRouter } from "next/navigation"
 
 const StartupForm = () => {
     const [errors, setErrors] = useState<Record<string, string>>({})
     const [pitch, setPitch] = useState("")
+    const router = useRouter()
 
     const handleFormSubmit = async (prevState: any, formData: FormData) => {
         try {
@@ -29,8 +32,25 @@ const StartupForm = () => {
             // const result = await createIdea(prevState, formData, pitch)
 
             // console.log(result)
+
+            // router.push(`/startup/${result.id}`)
+
+            // return result
         } catch (error) {
-        } finally {
+            if (error instanceof z.ZodError) {
+                const fieldErrors = error.flatten().fieldErrors
+                setErrors(fieldErrors as unknown as Record<string, string>)
+                return {
+                    ...prevState,
+                    error: "Validataion failed",
+                    status: "ERROR",
+                }
+            }
+            return {
+                ...prevState,
+                error: "An unexpected error has occured",
+                status: "ERROR",
+            }
         }
     }
 
@@ -40,7 +60,7 @@ const StartupForm = () => {
     })
 
     return (
-        <form action={() => {}} className="startup-form">
+        <form action={formAction} className="startup-form">
             <div>
                 <label htmlFor="title" className="startup-form_label">
                     Title
