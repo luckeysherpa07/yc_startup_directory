@@ -45,7 +45,10 @@ const StartupCard = ({ post }: { post: StartupTypeCard }) => {
                 </div>
                 <Link href={`/user/${author?._id}`}>
                     <Image
-                        src={author?.image ?? "No Image Available"}
+                        src={
+                            author?.image ??
+                            "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bc/Unknown_person.jpg/960px-Unknown_person.jpg?20200423155822"
+                        }
                         alt={author?.name ?? "Unknown Author"}
                         width={48}
                         height={48}
