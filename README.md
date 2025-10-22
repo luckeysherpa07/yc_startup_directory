@@ -1,3 +1,11 @@
+## Live Demo
+
+The live Demo of the project is provided in [here](https://yc-startup-directory-fp7k.vercel.app/). 
+
+
+<img width="1885" height="936" alt="image" src="https://github.com/user-attachments/assets/bcaff519-c4a0-449a-8163-98ea65ab40c6" />
+
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
